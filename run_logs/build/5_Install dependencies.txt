@@ -1,0 +1,30 @@
+﻿2026-05-12T11:37:26.5741902Z ##[group]Run npm ci --legacy-peer-deps
+2026-05-12T11:37:26.5743022Z [36;1mnpm ci --legacy-peer-deps[0m
+2026-05-12T11:37:26.5776162Z shell: /usr/bin/bash -e {0}
+2026-05-12T11:37:26.5777009Z env:
+2026-05-12T11:37:26.5777936Z   GITHUB_PAGES: true
+2026-05-12T11:37:26.5778677Z ##[endgroup]
+2026-05-12T11:37:27.2310937Z npm warn EBADENGINE Unsupported engine {
+2026-05-12T11:37:27.2312016Z npm warn EBADENGINE   package: 'camera-controls@3.1.2',
+2026-05-12T11:37:27.2312988Z npm warn EBADENGINE   required: { node: '>=22.0.0', npm: '>=10.5.1' },
+2026-05-12T11:37:27.2314430Z npm warn EBADENGINE   current: { node: 'v20.20.2', npm: '10.8.2' }
+2026-05-12T11:37:27.2315128Z npm warn EBADENGINE }
+2026-05-12T11:37:28.8806601Z npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+2026-05-12T11:37:29.5297381Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-05-12T11:37:29.5881186Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-05-12T11:37:30.5044082Z npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+2026-05-12T11:37:30.5194882Z npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+2026-05-12T11:37:32.7181146Z npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+2026-05-12T11:37:40.4287490Z npm warn deprecated next@15.0.3: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.
+2026-05-12T11:37:41.1022843Z 
+2026-05-12T11:37:41.1024007Z added 448 packages, and audited 449 packages in 14s
+2026-05-12T11:37:41.1024563Z 
+2026-05-12T11:37:41.1025030Z 152 packages are looking for funding
+2026-05-12T11:37:41.1025498Z   run `npm fund` for details
+2026-05-12T11:37:41.2513762Z 
+2026-05-12T11:37:41.2514499Z 2 vulnerabilities (1 moderate, 1 critical)
+2026-05-12T11:37:41.2515244Z 
+2026-05-12T11:37:41.2515491Z To address all issues, run:
+2026-05-12T11:37:41.2515838Z   npm audit fix --force
+2026-05-12T11:37:41.2516067Z 
+2026-05-12T11:37:41.2516225Z Run `npm audit` for details.
