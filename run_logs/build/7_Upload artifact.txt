@@ -1,0 +1,27 @@
+﻿2026-05-12T11:38:12.7822393Z ##[group]Run actions/upload-pages-artifact@v3
+2026-05-12T11:38:12.7822704Z with:
+2026-05-12T11:38:12.7822893Z   path: ./out
+2026-05-12T11:38:12.7823079Z   name: github-pages
+2026-05-12T11:38:12.7823284Z   retention-days: 1
+2026-05-12T11:38:12.7823468Z env:
+2026-05-12T11:38:12.7823636Z   GITHUB_PAGES: true
+2026-05-12T11:38:12.7823856Z ##[endgroup]
+2026-05-12T11:38:12.7914323Z ##[group]Run echo ::group::Archive artifact
+2026-05-12T11:38:12.7914662Z [36;1mecho ::group::Archive artifact[0m
+2026-05-12T11:38:12.7914915Z [36;1mtar \[0m
+2026-05-12T11:38:12.7915152Z [36;1m  --dereference --hard-dereference \[0m
+2026-05-12T11:38:12.7915461Z [36;1m  --directory "$INPUT_PATH" \[0m
+2026-05-12T11:38:12.7915740Z [36;1m  -cvf "$RUNNER_TEMP/artifact.tar" \[0m
+2026-05-12T11:38:12.7915999Z [36;1m  --exclude=.git \[0m
+2026-05-12T11:38:12.7916236Z [36;1m  --exclude=.github \[0m
+2026-05-12T11:38:12.7916450Z [36;1m  .[0m
+2026-05-12T11:38:12.7916639Z [36;1mecho ::endgroup::[0m
+2026-05-12T11:38:12.7956334Z shell: /usr/bin/sh -e {0}
+2026-05-12T11:38:12.7956627Z env:
+2026-05-12T11:38:12.7956816Z   GITHUB_PAGES: true
+2026-05-12T11:38:12.7957022Z   INPUT_PATH: ./out
+2026-05-12T11:38:12.7957414Z ##[endgroup]
+2026-05-12T11:38:12.8010718Z ##[group]Archive artifact
+2026-05-12T11:38:12.8023727Z tar: out: Cannot open: No such file or directory
+2026-05-12T11:38:12.8024366Z tar: Error is not recoverable: exiting now
+2026-05-12T11:38:12.8034547Z ##[error]Process completed with exit code 2.
