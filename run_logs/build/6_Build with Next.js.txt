@@ -1,0 +1,52 @@
+﻿2026-05-12T11:37:41.2868444Z ##[group]Run npx next build
+2026-05-12T11:37:41.2868930Z [36;1mnpx next build[0m
+2026-05-12T11:37:41.2904208Z shell: /usr/bin/bash -e {0}
+2026-05-12T11:37:41.2904483Z env:
+2026-05-12T11:37:41.2904673Z   GITHUB_PAGES: true
+2026-05-12T11:37:41.2904885Z ##[endgroup]
+2026-05-12T11:37:42.2545804Z  ⚠ Invalid next.config.js options detected: 
+2026-05-12T11:37:42.2549636Z  ⚠     Unrecognized key(s) in object: 'images' at "experimental"
+2026-05-12T11:37:42.2551039Z  ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+2026-05-12T11:37:42.2579915Z ⚠ No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+2026-05-12T11:37:42.2672143Z Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2026-05-12T11:37:42.2673187Z This information is used to shape Next.js' roadmap and prioritize features.
+2026-05-12T11:37:42.2674485Z You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2026-05-12T11:37:42.2675501Z https://nextjs.org/telemetry
+2026-05-12T11:37:42.2675760Z 
+2026-05-12T11:37:42.3217626Z    ▲ Next.js 15.0.3
+2026-05-12T11:37:42.3217934Z 
+2026-05-12T11:37:42.3772712Z    Creating an optimized production build ...
+2026-05-12T11:37:43.9198139Z  ⨯ Failed to find font override values for font `Geist`
+2026-05-12T11:37:43.9538220Z  ⨯ Failed to find font override values for font `Geist Mono`
+2026-05-12T11:37:52.5165867Z  ⨯ Failed to find font override values for font `Geist`
+2026-05-12T11:37:52.5504807Z  ⨯ Failed to find font override values for font `Geist Mono`
+2026-05-12T11:38:00.3707692Z  ✓ Compiled successfully
+2026-05-12T11:38:00.3751024Z    Linting and checking validity of types ...
+2026-05-12T11:38:02.5009582Z 
+2026-05-12T11:38:02.5010619Z ./src/app/page.tsx
+2026-05-12T11:38:02.5018629Z 41:14  Warning: '_e' is defined but never used.  @typescript-eslint/no-unused-vars
+2026-05-12T11:38:02.5024360Z 
+2026-05-12T11:38:02.5025047Z ./src/components/simulation/OrbitalSimulation.tsx
+2026-05-12T11:38:02.5026747Z 121:20  Warning: 'delta' is defined but never used. Allowed unused args must match /^_/u.  @typescript-eslint/no-unused-vars
+2026-05-12T11:38:02.5028017Z 
+2026-05-12T11:38:02.5029249Z info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/app/building-your-application/configuring/eslint#disabling-rules
+2026-05-12T11:38:04.4138473Z    Collecting page data ...
+2026-05-12T11:38:06.5122912Z    Generating static pages (0/5) ...
+2026-05-12T11:38:07.1888603Z    Generating static pages (1/5) 
+2026-05-12T11:38:07.1889188Z    Generating static pages (2/5) 
+2026-05-12T11:38:07.1889557Z    Generating static pages (3/5) 
+2026-05-12T11:38:07.1890110Z  ✓ Generating static pages (5/5)
+2026-05-12T11:38:07.4001218Z    Finalizing page optimization ...
+2026-05-12T11:38:07.4003085Z    Collecting build traces ...
+2026-05-12T11:38:12.6888736Z 
+2026-05-12T11:38:12.6917427Z Route (app)                              Size     First Load JS
+2026-05-12T11:38:12.6918572Z ┌ ○ /                                    67.9 kB         169 kB
+2026-05-12T11:38:12.6919297Z └ ○ /_not-found                          896 B           102 kB
+2026-05-12T11:38:12.6919881Z + First Load JS shared by all            101 kB
+2026-05-12T11:38:12.6920478Z   ├ chunks/4bd1b696-6747134161cc97bd.js  52.5 kB
+2026-05-12T11:38:12.6921060Z   ├ chunks/517-cb495c6a6e74ba47.js       45.6 kB
+2026-05-12T11:38:12.6921616Z   └ other shared chunks (total)          2.69 kB
+2026-05-12T11:38:12.6921911Z 
+2026-05-12T11:38:12.6921921Z 
+2026-05-12T11:38:12.6925599Z ○  (Static)  prerendered as static content
+2026-05-12T11:38:12.6925956Z 
