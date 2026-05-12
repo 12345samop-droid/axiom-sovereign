@@ -29,15 +29,12 @@ jobs:
         run: npm ci --legacy-peer-deps
       - name: Build with Next.js
         run: npx next build
-      - name: Fix Artifact Path
-        run: |
-          mkdir -p deployment_out
-          cp -r out/* deployment_out/
-          touch deployment_out/.nojekyll
+      - name: Disable Jekyll
+        run: touch out/.nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./deployment_out
+          path: out
   deploy:
     environment:
       name: github-pages
