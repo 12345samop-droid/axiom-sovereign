@@ -1,0 +1,40 @@
+﻿2026-05-12T11:37:26.3187735Z ##[group]Run actions/configure-pages@v4
+2026-05-12T11:37:26.3188723Z with:
+2026-05-12T11:37:26.3189427Z   static_site_generator: next
+2026-05-12T11:37:26.3190504Z   token: ***
+2026-05-12T11:37:26.3191198Z   enablement: false
+2026-05-12T11:37:26.3191916Z ##[endgroup]
+2026-05-12T11:37:26.5545901Z Using default blank configuration
+2026-05-12T11:37:26.5547836Z Injecting property=basePath and value=/axiom-sovereign in:
+2026-05-12T11:37:26.5549206Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5550195Z const nextConfig = {}
+2026-05-12T11:37:26.5551023Z module.exports = nextConfig
+2026-05-12T11:37:26.5551576Z 
+2026-05-12T11:37:26.5586127Z Found configuration object in indirect module export
+2026-05-12T11:37:26.5587720Z Injection successful, new configuration:
+2026-05-12T11:37:26.5589302Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5590478Z const nextConfig = {basePath: "/axiom-sovereign"}
+2026-05-12T11:37:26.5591607Z module.exports = nextConfig
+2026-05-12T11:37:26.5592144Z 
+2026-05-12T11:37:26.5593068Z Injecting property=experimental.images.unoptimized and value=true in:
+2026-05-12T11:37:26.5594537Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5595686Z const nextConfig = {basePath: "/axiom-sovereign"}
+2026-05-12T11:37:26.5596790Z module.exports = nextConfig
+2026-05-12T11:37:26.5597449Z 
+2026-05-12T11:37:26.5598925Z Found configuration object in indirect module export
+2026-05-12T11:37:26.5600493Z Injection successful, new configuration:
+2026-05-12T11:37:26.5601724Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5603563Z const nextConfig = {experimental: {images: {unoptimized: true}},basePath: "/axiom-sovereign"}
+2026-05-12T11:37:26.5605127Z module.exports = nextConfig
+2026-05-12T11:37:26.5605667Z 
+2026-05-12T11:37:26.5606299Z Injecting property=images.unoptimized and value=true in:
+2026-05-12T11:37:26.5608278Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5610453Z const nextConfig = {experimental: {images: {unoptimized: true}},basePath: "/axiom-sovereign"}
+2026-05-12T11:37:26.5612176Z module.exports = nextConfig
+2026-05-12T11:37:26.5612749Z 
+2026-05-12T11:37:26.5613327Z Found configuration object in indirect module export
+2026-05-12T11:37:26.5614538Z Injection successful, new configuration:
+2026-05-12T11:37:26.5615616Z // Default Pages configuration for Next
+2026-05-12T11:37:26.5617914Z const nextConfig = {images: {unoptimized: true},experimental: {images: {unoptimized: true}},basePath: "/axiom-sovereign"}
+2026-05-12T11:37:26.5619783Z module.exports = nextConfig
+2026-05-12T11:37:26.5620314Z 
