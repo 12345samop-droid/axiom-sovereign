@@ -9,7 +9,7 @@ import { sharedState } from '@/lib/yjs'
 
 const OrbitalSimulation = dynamic(() => import('@/components/simulation/OrbitalSimulation'), { 
   ssr: false,
-  loading: () => <div className="w-full h-full flex items-center justify-center bg-black text-cyan-500 font-mono text-xs tracking-widest uppercase">Initializing Celestial Engine...</div>
+  loading: () => <div className="w-full h-full flex items-center justify-center bg-black text-cyan-500 font-mono text-xs tracking-widest uppercase animate-pulse">Initializing Celestial Engine...</div>
 })
 
 const MafsFallback = dynamic(() => import('@/components/simulation/MafsFallback'), { 
@@ -33,7 +33,7 @@ export default function Home() {
     const savedKey = localStorage.getItem('NVIDEA_API_KEY')
     if (savedKey) setApiKey(savedKey)
     
-    // Check for 3D support (simplistic)
+    // WebGL support check
     try {
         const canvas = document.createElement('canvas')
         const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
@@ -59,6 +59,7 @@ export default function Home() {
   const handleSaveSettings = () => {
     localStorage.setItem('NVIDEA_API_KEY', apiKey)
     setShowSettings(false)
+    setError(null)
   }
 
   const parseAICommands = (content: string) => {
@@ -94,7 +95,7 @@ export default function Home() {
     try {
       const contextMessage: Message = {
         role: 'system',
-        content: `CURRENT TELEMETRY: Velocity: ${telemetry.velocity} KM/S, Altitude: ${telemetry.altitude} KM, Eccentricity: ${telemetry.eccentricity}. You can use SET_VELOCITY or SET_POSITION commands in JSON blocks.`
+        content: `TELEMETRY: Velocity ${telemetry.velocity} KM/S, Alt ${telemetry.altitude} KM. Mode: 3D Engine. Commands available.`
       }
       const response = await callSocraticAI([contextMessage, ...newMessages], apiKey)
       const cleanContent = parseAICommands(response)
@@ -116,7 +117,7 @@ export default function Home() {
       <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-8 z-10">
         <header className="flex justify-between items-start pointer-events-auto">
           <div>
-            <h1 className="text-4xl font-bold tracking-tighter text-white uppercase italic">Axiom-Sovereign</h1>
+            <h1 className="text-4xl font-bold tracking-tighter text-white uppercase italic drop-shadow-2xl">Axiom-Sovereign</h1>
             <div className="flex items-center gap-2 mt-1">
               <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
               <p className="text-cyan-400 font-mono text-xs tracking-widest uppercase">Orbital Mechanics V1.0</p>
@@ -126,7 +127,6 @@ export default function Home() {
               <button 
                 onClick={() => setUseFallback(!useFallback)}
                 className={`p-3 border rounded-full transition-all backdrop-blur-md active:scale-95 ${useFallback ? 'bg-cyan-500/20 border-cyan-500 text-cyan-400' : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10'}`}
-                title="Toggle 2D/3D Engine"
               >
                 <Cpu className="w-6 h-6" />
               </button>
@@ -140,17 +140,17 @@ export default function Home() {
         </header>
 
         <div className="w-full max-w-xl pointer-events-auto self-start">
-           <div className="bg-black/40 border border-white/10 backdrop-blur-2xl rounded-2xl p-6 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-             <div className="flex items-center justify-between mb-4 border-b border-white/5 pb-4">
-               <div className="flex items-center gap-2">
-                 <Sparkles className="w-4 h-4 text-cyan-400" />
-                 <span className="text-[10px] font-mono tracking-[0.3em] text-white/40 uppercase">Socratic Intelligence</span>
+           <div className="bg-black/60 border border-white/10 backdrop-blur-3xl rounded-2xl p-6 shadow-2xl relative overflow-hidden">
+             {error && (
+               <div className="absolute inset-x-0 top-0 bg-red-500/20 border-b border-red-500/50 p-2 flex items-center justify-center gap-2 animate-in slide-in-from-top duration-300">
+                 <AlertCircle className="w-4 h-4 text-red-400" />
+                 <span className="text-[10px] font-mono text-red-400 uppercase truncate px-4">{error}</span>
                </div>
-               {error && (
-                 <div className="flex items-center gap-1 text-red-400 text-[10px] font-mono animate-pulse uppercase">
-                   <AlertCircle className="w-3 h-3" /> API Error
-                 </div>
-               )}
+             )}
+             
+             <div className="flex items-center gap-2 mb-4 border-b border-white/5 pb-4 mt-4">
+               <Sparkles className="w-4 h-4 text-cyan-400" />
+               <span className="text-[10px] font-mono tracking-[0.3em] text-white/40 uppercase">Socratic Intelligence</span>
              </div>
              
              <div ref={scrollRef} className="space-y-6 h-80 overflow-y-auto mb-6 pr-2 scrollbar-hide">
@@ -163,9 +163,9 @@ export default function Home() {
                 ))}
                 {isLoading && (
                   <div className="flex gap-1 items-center">
-                    <div className="w-1 h-1 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <div className="w-1 h-1 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <div className="w-1 h-1 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                    <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <div className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 )}
              </div>
@@ -179,7 +179,7 @@ export default function Home() {
                 placeholder="Formulate a hypothesis..."
                 className="flex-1 bg-transparent border-none px-4 py-3 text-sm focus:outline-none placeholder:text-white/20"
                />
-               <button onClick={handleSendMessage} disabled={isLoading} className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-lg transition-all active:scale-95">
+               <button onClick={handleSendMessage} disabled={isLoading} className="bg-white/10 hover:bg-white/20 text-white p-2 rounded-lg transition-all active:scale-95 disabled:opacity-30">
                  <Send className="w-5 h-5" />
                </button>
              </div>
@@ -215,10 +215,11 @@ export default function Home() {
       {showSettings && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl p-4 pointer-events-auto animate-in fade-in duration-300">
           <div className="w-full max-w-md bg-zinc-900 border border-white/10 rounded-3xl p-10 shadow-2xl">
-            <h2 className="text-2xl font-bold mb-8 flex items-center gap-4">
+            <h2 className="text-2xl font-bold mb-2 flex items-center gap-4 text-white">
               <div className="p-3 bg-cyan-500/10 rounded-2xl"><Settings className="w-6 h-6 text-cyan-400" /></div>
               Sovereign Settings
             </h2>
+            <p className="text-xs text-white/40 mb-8 font-mono tracking-widest uppercase">Environment Configuration</p>
             <div className="space-y-8">
               <div>
                 <label className="block text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">NVIDIA API Key</label>
@@ -227,10 +228,11 @@ export default function Home() {
                   value={apiKey}
                   onChange={(e) => setApiKey(e.target.value)}
                   placeholder="nvapi-..."
-                  className="w-full bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-mono focus:border-cyan-500/50 transition-all"
+                  className="w-full bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-mono focus:border-cyan-500/50 transition-all text-white"
                 />
+                <p className="mt-2 text-[9px] text-white/20 italic">Must start with 'nvapi-'. Key is stored locally in your browser.</p>
               </div>
-              <button onClick={handleSaveSettings} className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-400 uppercase tracking-widest text-xs active:scale-95 transition-all">
+              <button onClick={handleSaveSettings} className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-400 uppercase tracking-widest text-xs active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                 Save Configuration
               </button>
             </div>
