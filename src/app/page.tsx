@@ -230,7 +230,7 @@ export default function Home() {
                   placeholder="nvapi-..."
                   className="w-full bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-mono focus:border-cyan-500/50 transition-all text-white"
                 />
-                <p className="mt-2 text-[9px] text-white/20 italic">Must start with 'nvapi-'. Key is stored locally in your browser.</p>
+                <p className="mt-2 text-[9px] text-white/20 italic">Must start with &apos;nvapi-&apos;. Key is stored locally in your browser.</p>
               </div>
               <button onClick={handleSaveSettings} className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-400 uppercase tracking-widest text-xs active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                 Save Configuration
