@@ -31,15 +31,8 @@ TONE:
 Expert, cinematic, and patient.
 `;
 
-export async function callSocraticAI(messages: Message[], apiKey: string) {
+export async function callSocraticAI(messages: Message[], apiKey?: string) {
   try {
-    const cleanKey = apiKey.trim();
-    
-    // Check if the key format looks correct
-    if (!cleanKey.startsWith('nvapi-')) {
-       throw new Error("Invalid API Key format. Key must start with 'nvapi-'.");
-    }
-
     const systemInstruction = messages.filter(m => m.role === 'system').map(m => m.content).join('\n\n');
     const userMessages = messages.filter(m => m.role !== 'system');
     
@@ -48,38 +41,26 @@ export async function callSocraticAI(messages: Message[], apiKey: string) {
       ...userMessages
     ];
 
-    const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+    // Call our internal API proxy instead of NVIDIA directly
+    const response = await fetch('/api/chat', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${cleanKey}`
       },
       body: JSON.stringify({
-        model: "meta/llama-3.1-70b-instruct",
         messages: finalMessages,
-        temperature: 0.3,
-        max_tokens: 1024,
+        apiKey: apiKey // Optional client-side override
       })
     }).catch(err => {
-      // Specifically handle network/CORS errors which often result in "Failed to fetch"
-      if (err instanceof TypeError && err.message === 'Failed to fetch') {
-        throw new Error("Network Error: Could not connect to NVIDIA API. This is usually caused by an invalid API key, lack of credits, or the NVIDIA endpoint blocking the request from the browser (CORS). Please check your browser console for details.");
-      }
-      throw err;
+      throw new Error(`Connection Error: ${err.message}. Ensure you are deploying to a platform that supports Next.js API routes (like Vercel).`);
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      let errorDetail = 'Unknown Error';
-      try {
-        const errorData = await response.json();
-        errorDetail = errorData.message || errorData.error?.message || JSON.stringify(errorData);
-      } catch (_e) {
-        errorDetail = `Status: ${response.status} ${response.statusText}`;
-      }
-      throw new Error(`NVIDIA NIM Error: ${errorDetail}`);
+      throw new Error(data.error || `Server error (${response.status})`);
     }
 
-    const data = await response.json();
     if (!data.choices || data.choices.length === 0) {
       throw new Error('No response from AI service');
     }
