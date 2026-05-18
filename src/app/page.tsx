@@ -30,7 +30,7 @@ export default function Home() {
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const savedKey = localStorage.getItem('NVIDEA_API_KEY')
+    const savedKey = localStorage.getItem('NVIDIA_API_KEY')
     if (savedKey) setApiKey(savedKey)
     
     // WebGL support check
@@ -57,7 +57,7 @@ export default function Home() {
   }, [messages])
 
   const handleSaveSettings = () => {
-    localStorage.setItem('NVIDEA_API_KEY', apiKey)
+    localStorage.setItem('NVIDIA_API_KEY', apiKey)
     setShowSettings(false)
     setError(null)
   }
@@ -79,11 +79,6 @@ export default function Home() {
 
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return
-    if (!apiKey) {
-      setError("Please provide an NVIDIA API Key in settings.")
-      setShowSettings(true)
-      return
-    }
 
     const userMessage: Message = { role: 'user', content: input }
     const newMessages = [...messages, userMessage]
@@ -222,7 +217,7 @@ export default function Home() {
             <p className="text-xs text-white/40 mb-8 font-mono tracking-widest uppercase">Environment Configuration</p>
             <div className="space-y-8">
               <div>
-                <label className="block text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">NVIDIA API Key</label>
+                <label className="block text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">NVIDIA API Key (Override)</label>
                 <input 
                   type="password" 
                   value={apiKey}
@@ -230,7 +225,7 @@ export default function Home() {
                   placeholder="nvapi-..."
                   className="w-full bg-black border border-white/10 rounded-xl px-4 py-4 text-sm font-mono focus:border-cyan-500/50 transition-all text-white"
                 />
-                <p className="mt-2 text-[9px] text-white/20 italic">Must start with &apos;nvapi-&apos;. Key is stored locally in your browser.</p>
+                <p className="mt-2 text-[9px] text-white/20 italic text-wrap">If empty, the system uses the server-side key. Key must start with &apos;nvapi-&apos;.</p>
               </div>
               <button onClick={handleSaveSettings} className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-cyan-400 uppercase tracking-widest text-xs active:scale-95 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                 Save Configuration
